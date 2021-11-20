@@ -1,6 +1,8 @@
 import React from 'react';
 import Layout from '../../../components/Layout';
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
+import Input from '../../../components/Layout/UI/Input/Index';
+
 function Signup() {
     return (
         <>
@@ -11,33 +13,43 @@ function Signup() {
                             <Form>
                                 <Row>
                                     <Col md={6}>
-                                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                                            <Form.Label>First Name</Form.Label>
-                                            <Form.Control type="text" placeholder="Password" />
-                                        </Form.Group>
+                                        <Input label="First Name"
+                                            placeholder="First Name"
+                                            value=""
+                                            type="text"
+                                            onChange={() => { }}
+
+                                        />
                                     </Col>
                                     <Col md={6}>
-                                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                                            <Form.Label>Last  Name</Form.Label>
-                                            <Form.Control type="text" placeholder="Password" />
-                                        </Form.Group>
+                                        <Input label="Last Name"
+                                            placeholder="Last Name"
+                                            value=""
+                                            type="text"
+                                            onChange={() => { }}
+
+                                        />
                                     </Col>
                                 </Row>
 
 
 
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
-                                    <Form.Label>Email address</Form.Label>
-                                    <Form.Control type="email" placeholder="Enter email" />
-                                    <Form.Text className="text-muted">
-                                        We'll never share your email with anyone else.
-                                    </Form.Text>
-                                </Form.Group>
 
-                                <Form.Group className="mb-3" controlId="formBasicPassword">
-                                    <Form.Label>Password</Form.Label>
-                                    <Form.Control type="password" placeholder="Password" />
-                                </Form.Group>
+                                <Input label="Email"
+                                    placeholder="Email"
+                                    value=""
+                                    type="email"
+                                    onChange={() => { }}
+
+                                />
+
+                                <Input label="Password"
+                                    placeholder="Password"
+                                    value=""
+                                    type="password"
+                                    onChange={() => { }}
+
+                                />
                                 <Button variant="primary" type="submit">
                                     Submit
                                 </Button>

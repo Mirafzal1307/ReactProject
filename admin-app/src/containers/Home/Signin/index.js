@@ -1,28 +1,49 @@
 import React from 'react'
 import Layout from '../../../components/Layout';
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
+import Input from '../../../components/Layout/UI/Input/Index';
+import { login } from '../../../actions';
+import { useDispatch } from 'react-redux';
 
 
 function Signin() {
+
+    const dispatch = useDispatch()
+
+
+    const userLogin = (e) => {
+        e.preventDefault();
+
+        const user = {
+            email: 'usmonjonovmirafzal0713@gmail.com',
+            password: 'Mir12345'
+        }
+        dispatch(login(user));
+    }
+
+
     return (
         <>
             <Layout>
                 <Container>
-                    <Row style={{marginTop: '50px'}}>
-                        <Col md={{span : 6 , offset : 3}}>
-                            <Form>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
-                                    <Form.Label>Email address</Form.Label>
-                                    <Form.Control type="email" placeholder="Enter email" />
-                                    <Form.Text className="text-muted">
-                                        We'll never share your email with anyone else.
-                                    </Form.Text>
-                                </Form.Group>
+                    <Row style={{ marginTop: '50px' }}>
+                        <Col md={{ span: 6, offset: 3 }}>
+                            <Form onSubmit={userLogin} >
 
-                                <Form.Group className="mb-3" controlId="formBasicPassword">
-                                    <Form.Label>Password</Form.Label>
-                                    <Form.Control type="password" placeholder="Password" />
-                                </Form.Group>
+                                <Input label="Email"
+                                    placeholder="Email"
+                                    value=""
+                                    type="email"
+                                    onChange={() => { }}
+
+                                />
+                                <Input label="Password"
+                                    placeholder="Password"
+                                    value=""
+                                    type="password"
+                                    onChange={() => { }}
+
+                                />
                                 <Button variant="primary" type="submit">
                                     Submit
                                 </Button>
