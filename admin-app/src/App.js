@@ -11,8 +11,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" caseSensitive={false} element={<Home/>} />
-        <Route path="/signin" caseSensitive={false} element={<Signin />} />
-        <Route path="/signup" caseSensitive={false} element={<Signup />} />
+        <Route path="signin" caseSensitive={false} element={<Signin />} />
+        <Route path="signup" caseSensitive={false} element={<Signup />} />
       </Routes>
     </Router>
    );

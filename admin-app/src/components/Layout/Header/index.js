@@ -23,10 +23,10 @@ function Header() {
                         <Nav>
                             {/* <Nav.Link href="#deets">Sign in</Nav.Link> */}
                         <li className="nav-item">
-                             <NavLink to="signin" className="nav-link">Sign In</NavLink>
+                             <NavLink to="/signin" className="nav-link">Sign In</NavLink>
                         </li>
                         <li className="nav-item">
-                             <NavLink to="signup" className="nav-link">Sign Up</NavLink>
+                             <NavLink to="/signup" className="nav-link">Sign Up</NavLink>
                         </li>
                         
                        
