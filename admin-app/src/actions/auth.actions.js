@@ -13,22 +13,46 @@ export const login = (user) => {
         if (res.status === 200) {
             const { token, user } = res.data;
             localStorage.setItem('token', token);
+            localStorage.setItem('user', JSON.stringify(user));
             dispatch({
                 type: authConstants.LOGIN_SECCESS,
                 payload: {
                     token, user
                 }
             })
-        }else {
-            if(res.status === 400){
-                dispatch({ 
+        } else {
+            if (res.status === 400) {
+
+                dispatch({
                     type: authConstants.LOGIN_FAILTURE,
-                    payload : {error : res.data.error}
+                    payload: { error: res.data.error }
                 })
 
             }
         }
 
 
+    }
+}
+ 
+export   const isUserLoggedIn = () => {
+    return async dispatch => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            const user = JSON.parse(localStorage.getItem('user'));
+            dispatch({
+                type: authConstants.LOGIN_SECCESS,
+                payload: {
+                    token, user
+                }
+            })
+        }else{
+            dispatch({
+                type: authConstants.LOGIN_FAILTURE,
+                payload: { error:'Failed to login ' }
+            })
+
+        }
+        
     }
 }
