@@ -7,7 +7,7 @@ export const login = (user) => {
 
     return async (dispatch) => {
         dispatch({ type: authConstants.LOGIN_REQUEST })
-        const res = await axios.post(`/admin/signin`, {
+        const res = await axios.post('/admin/signin', {
             ...user
         })
         if (res.status === 200) {
@@ -34,8 +34,10 @@ export const login = (user) => {
 
     }
 }
+
+
  
-export   const isUserLoggedIn = () => {
+export  const isUserLoggedIn = () => {
     return async dispatch => {
         const token = localStorage.getItem('token');
         if (token) {
@@ -55,4 +57,16 @@ export   const isUserLoggedIn = () => {
         }
         
     }
+}
+export const signout = () => {
+ return async dispatch => {
+     localStorage.clear();
+     dispatch({
+         type: authConstants.LOGOUT_REQUEST
+
+     })
+
+ }
+
+
 }
