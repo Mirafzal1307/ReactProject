@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import Layout from '../../../components/Layout';
+import Layout from '../../components/Layout';
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
-import Input from '../../../components/Layout/UI/Input/Index';
+import Input from '../../components/UI/Input/Index';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { signup } from '../../../actions'
+import { signup } from '../../actions'
 
 
 
@@ -46,7 +46,7 @@ function Signup(props) {
 
 
     return (
-        <>
+
             <Layout>
                 <Container>
                     {user.message}
@@ -101,7 +101,7 @@ function Signup(props) {
 
                 </Container>
             </Layout>
-        </>
+     
     )
 }
 

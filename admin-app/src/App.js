@@ -2,11 +2,14 @@ import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import Home from './containers/Home';
-import Signup from './containers/Home/Signup';
-import Signin from './containers/Home/Signin';
-import PrivateRoute from './components/Layout/HOC/PrivateRoute';
+import Signup from './containers/Signup';
+import Signin from './containers/Signin';
+import PrivateRoute from './components/HOC/PrivateRoute';
 import { useDispatch, useSelector } from 'react-redux';
 import { isUserLoggedIn } from './actions'
+import Products from './containers/Products';
+import Orders from './containers/Orders';
+import Category from './containers/Category';
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +29,11 @@ function App() {
 
       <Switch>
         <PrivateRoute path="/" exact component={Home} />
+        <PrivateRoute path="/category"  component={Category} />
+        <PrivateRoute path="/products"  component={Products} />
+        <PrivateRoute path="/orders"  component={Orders} />
+      
+
 
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />

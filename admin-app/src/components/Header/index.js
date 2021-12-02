@@ -2,15 +2,18 @@ import React from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { NavLink, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
-import { signout } from '../../../actions';
+import { signout } from '../../actions';
 
 function Header() {
 
 
     const auth = useSelector(state => state.auth)
     const dispatch = useDispatch();
+    
     const logout = () => {
          dispatch (signout())
+
+
     }
 
 

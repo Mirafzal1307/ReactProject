@@ -1,5 +1,5 @@
 /* eslint-disable default-case */
-import _default from "atob";
+
 import { authConstants } from "../actions/constants"
 
 const initState = {
@@ -12,6 +12,10 @@ const initState = {
     },
     authenticate: false,
     authenticating: false,
+    loading: false,
+    error: null,
+    message: ''
+
 }
 
 
@@ -35,17 +39,31 @@ export default (state = initState, action) => {
                 user: action.payload.user,
                 token: action.payload.token,
                 authenticate: true,
-                authenticating: false 
+                authenticating: false
             }
             break
-            case authConstants.LOGOUT_REQUESTbottom: 
-              state ={
-                  ...initState
-              }
-              break ;
-         
+        case authConstants.LOGOUT_REQUEST:
+            state = {
+                ...state,
+                loading : true
+            }
+            break;
 
-    }   
+        case authConstants.LOGOUT_SUCCESS:
+            state = {
+                ...initState
+            }
+            break;
+        case authConstants.LOGOUT_FAILURE:
+            state = {
+                ...state,
+                error: action.payload.error,
+                loading : false
+            }
+            break;
+
+
+    }
 
 
     return state;
