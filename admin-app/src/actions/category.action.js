@@ -2,15 +2,10 @@ import axios from "../helpers/axios";
 import { categoryConstants } from "./constants";
 
 export const getAllCategory = () => {
-
-
-
-
     return async dispatch => {
-
         dispatch({ type: categoryConstants.GET_ALL_CATEGORIES_REQUEST })
         const res = await axios.get(`category/getcategory`);
-        console.log(res)
+        console.log(res.data.categoryList)
         if (res.status === 200) {
 
 
@@ -33,18 +28,18 @@ export const addCategory = (form, category) => {
 
     return async dispatch => {
 
-        dispatch({ type: categoryConstants.ADD_NEW_CATEGORIES_REQUEST });
+        dispatch({ type: categoryConstants.ADD_NEW_CATEGORY_REQUEST });
 
         const res = await axios.post(`/category/create`, form)
         if (res.status === 201) {
             dispatch({
-                type: categoryConstants.ADD_NEW_CATEGORIES_SUCCESS,
-                payload:{category : res.data.category} 
+                type: categoryConstants.ADD_NEW_CATEGORY_SECCESS,
+                payload: { category: res.data.category }
 
             })
-        }else{
+        } else {
             dispatch({
-                type: categoryConstants.ADD_NEW_CATEGORIES_FAILURE,
+                type: categoryConstants.ADD_NEW_CATEGORY_FAILURE,
                 payload: res.data.error
 
             })

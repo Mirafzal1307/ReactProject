@@ -30,13 +30,13 @@ export default (state = initState, action) => {
             }
             break
 
-        case categoryConstants.GET_NEW_CATEGORIES_REQUEST:
+        case categoryConstants.ADD_NEW_CATEGORY_REQUEST:
             state = {
                 ...state,
                 loading: true
             }
             break
-        case categoryConstants.GET_NEW_CATEGORIES_SECCESS:
+        case categoryConstants.ADD_NEW_CATEGORY_SECCESS:
             const updateCategories = buildNewCategories(state.categories, action.payload.category)
             console.log(updateCategories)
             state = {
@@ -46,7 +46,7 @@ export default (state = initState, action) => {
             }
             break
 
-        case categoryConstants.GET_NEW_CATEGORIES_FAILURE:
+        case categoryConstants.ADD_NEW_CATEGORY_FAILURE:
             state = {
                 ...initState
 

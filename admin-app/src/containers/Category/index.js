@@ -23,17 +23,17 @@ function Category(props) {
     }, []);
 
 
-    const handleClose = ()=> {
+    const handleClose = () => {
         const form = new FormData();
-        form.append('name' , categoryName);
-        form.append('parentId' , parentCategoryId);
-        form.append('categoryImage' , categoryImage);
+        form.append('name', categoryName);
+        form.append('parentId', parentCategoryId);
+        form.append('categoryImage', categoryImage);
         dispatch(addCategory(form));
 
-    
+
         setShow(false)
     }
-    
+
     const handleShow = () => setShow(true);
 
     function renderCategories(categories) {
@@ -47,10 +47,16 @@ function Category(props) {
 
                 <li key={category.name}>
                     {category.name}
-                    {category.children.lenght > 0 ? (<ul>{renderCategories(category.children)}</ul>) : null}
+                    {category.children.length > 0 ? (<ul>{renderCategories(category.children)}</ul>) : null}
                 </li>
             );
         }
+        // const listItems = categories.map((category) =>
+        //     <li key={category._id} > {category.name}
+        //     </li>
+        // )
+
+
 
         return myCategories;
 
@@ -112,14 +118,14 @@ function Category(props) {
                     />
 
                     <select className="form-control"
-                    value={parentCategoryId}
+                        value={parentCategoryId}
 
-                     onChange={(e) => setParentCategoryId(e.target.value) }>
+                        onChange={(e) => setParentCategoryId(e.target.value)}>
                         <option>
                             Select category
                         </option>
                         {
-                            createCategoryList(category.categories).map(option => <option  key={option.value} value={option.value}  >{option.name}</option>)
+                            createCategoryList(category.categories).map(option => <option key={option.value} value={option.value}  >{option.name}</option>)
                         }
 
                     </select>
