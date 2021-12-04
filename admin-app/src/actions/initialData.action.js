@@ -14,14 +14,11 @@ export const getinitialData = () => {
 
         if (res.status === 200) {
             const { categories, products } = res.data;
-
+            products.map(i => console.log(i))
 
             dispatch({
                 type: categoryConstants.GET_ALL_CATEGORIES_SECCESS,
                 payload: { categories }
-
-
-
             });
             dispatch({
                 type: productConstants.GET_ALL_PRODUCTS_SECCESS,

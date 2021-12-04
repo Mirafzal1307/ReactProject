@@ -17,7 +17,8 @@ const Products = () => {
     const [show, setShow] = useState(false);
     const category = useSelector(state => state.category);
     const product = useSelector(state => state.product);
-  
+    
+    
     const dispatch = useDispatch();
 
     const handleClose = () => {
@@ -31,17 +32,9 @@ const Products = () => {
         for (let pic of productPictures) {
             form.append("productPictures", pic );
         }
-
-
-
         dispatch(addProduct(form))
-
-
-
-
         setShow(false)
     }
-
 
     const createCategoryList = (categories, options = []) => {
 
@@ -87,16 +80,15 @@ const Products = () => {
                 </thead>
                 <tbody>
                     {
-                        product.products.length >= 0 ? product.products.map(product =>
-                            <tr key={product._id}>
+                        product.length > 0 ? product.map(product => 
+                            <tr key={product?._id}>
                                 <td>2</td>
-                                <td>{product.name}</td>
-                                <td>{product.price}</td>
-                                <td>{product.quantity}</td>
-                                <td>{product.description}</td>
+                                <td>{product?.name}</td>
+                                <td>{product?.price}</td>
+                                <td>{product?.quantity}</td>
+                                <td>{product?.description}</td>
                                 <td>--</td>
                             </tr> ) : null
-
                     }
                 </tbody>
             </Table>

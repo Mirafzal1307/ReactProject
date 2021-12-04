@@ -1,6 +1,6 @@
 import { authConstants } from './constants';
 import axios from '../helpers/axios';
-import { baseURL } from '../urlConfig';
+import { api } from '../urlConfig';
 
 export const login = (user) => {
 
@@ -8,7 +8,7 @@ export const login = (user) => {
 
     return async (dispatch) => {
         dispatch({ type: authConstants.LOGIN_REQUEST })
-        const res = await axios.post(`${baseURL}/admin/signin`, {
+        const res = await axios.post(`/admin/signin`, {
             ...user
         })
         if (res.status === 200) {
