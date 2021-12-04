@@ -8,6 +8,6 @@ export const addProduct = form => {
 
 
         const res = await axios.post(`${baseURL}/product/create` , form );
-        console.log(res)
+        // console.log(`------${res.data}`)
     }
 }

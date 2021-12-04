@@ -9,15 +9,27 @@ const initState = {
 const buildNewCategories = (parentId, categories, category) => {
     let myCategories = [];
 
-    if(parentId)
+    if (parentId == undefined) {
+        return [
+          ...categories, 
+          { 
+              _id : category._id,
+              name: category.name,
+              slug : category.slug ,
+              children : [] 
+          }
+        ];
+
+
+    }
 
 
     for (let cat of categories) {
 
-        if ( cat._id === parentId) {
+        if (cat._id === parentId) {
             myCategories.push({
                 ...cat,
-                children: cat.children && cat.children.length > 0 ? buildNewCategories(parentId, [...cat.children, {
+                children: cat.children ? buildNewCategories(parentId, [...cat.children, {
                     _id: category._id,
                     name: category.name,
                     slug: category.slug,
@@ -29,7 +41,7 @@ const buildNewCategories = (parentId, categories, category) => {
 
             myCategories.push({
                 ...cat,
-                children: cat.children && cat.children.length > 0 ? buildNewCategories(parentId, cat.children, category) : []
+                children: cat.children ? buildNewCategories(parentId, cat.children, category) : []
             })
         }
     }
@@ -58,7 +70,7 @@ export default (state = initState, action) => {
             const category = action.payload.category;
 
             const updateCategories = buildNewCategories(category.parentId, state.categories, category)
-            console.log ( 'updated categories' , updateCategories)
+            console.log('updated categories', updateCategories)
             state = {
                 ...state,
                 categories: updateCategories,
