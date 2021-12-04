@@ -106,7 +106,7 @@ function Category(props) {
                 </Row>
             </Container>
             <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
+                <Modal.Header >
                     <Modal.Title>Add New Category</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -117,7 +117,7 @@ function Category(props) {
                         onChange={(e) => setCategoryName(e.target.value)}
                     />
 
-                    <select className="form-control"
+                    <select className="form-control" style={{marginTop : '15px' , marginBottom : '15px'}}
                         value={parentCategoryId}
 
                         onChange={(e) => setParentCategoryId(e.target.value)}>
