@@ -16,11 +16,11 @@ function Category(props) {
     const [show, setShow] = useState(false);
 
     const dispatch = useDispatch();
-    useEffect(() => {
-        console.log(`Category.js`)
-        dispatch(getAllCategory());
+    // useEffect(() => {
+    //     console.log(`Category.js`)
+    //     dispatch(getAllCategory());
 
-    }, []);
+    // }, []);
 
 
     const handleClose = () => {

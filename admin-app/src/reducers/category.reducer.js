@@ -9,6 +9,9 @@ const initState = {
 const buildNewCategories = (parentId, categories, category) => {
     let myCategories = [];
 
+    if(parentId)
+
+
     for (let cat of categories) {
 
         if ( cat._id === parentId) {

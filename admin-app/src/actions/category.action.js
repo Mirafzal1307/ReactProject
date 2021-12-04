@@ -1,10 +1,11 @@
 import axios from "../helpers/axios";
+import { baseURL } from "../urlConfig";
 import { categoryConstants } from "./constants";
 
 export const getAllCategory = () => {
     return async dispatch => {
         dispatch({ type: categoryConstants.GET_ALL_CATEGORIES_REQUEST })
-        const res = await axios.get(`/category/getcategory`);
+        const res = await axios.get(`${baseURL}/category/getcategory`);
         console.log(res)
         if (res.status === 200) {
 
