@@ -1,5 +1,5 @@
 import {
-    initialDataConstants,
+   /*  initialDataConstants, */
     categoryConstants,
     productConstants
 } from "./constants"
@@ -7,15 +7,17 @@ import {
 import axios from "../helpers/axios";
 
 
-export const getinitialData = () => {
+export const getInitialData = () => {
     return async dispatch => {
 
         const res = await axios.post(`/initialData`);
 
         if (res.status === 200) {
             const { categories, products } = res.data;
-            products.map(i => console.log(i))
-
+            // products.map(i => console.log(i))
+            // for (const [key, value] of Object.entries(products)) {
+            //     console.log(`${key}: ${value}`);
+            //   }
             dispatch({
                 type: categoryConstants.GET_ALL_CATEGORIES_SECCESS,
                 payload: { categories }
@@ -26,7 +28,7 @@ export const getinitialData = () => {
             });
         }
 
-
+console.log(res)
 
     }
 }

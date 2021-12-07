@@ -11,8 +11,8 @@ import orderReducer from "./order.reducer";
 const rootReduser = combineReducers({
     auth : authReducer , 
     user : userReducer,
-    category: categoryReducer ,
-    product: productReducer ,
+    category: categoryReducer,
+    product: productReducer,
     order: orderReducer 
 
 })

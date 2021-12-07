@@ -1,0 +1,28 @@
+.key {
+    font-size: 16px;
+    font-weight: bold;
+    font-family : sans-serif ;
+    color: blue;
+
+
+}
+
+.value{
+    font-size: 18px;
+    font-family: sans-serif;
+    text-align: left;
+   
+}
+
+.productImgContainer{
+    width:  100px;
+    height: 100px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.productImgContainer img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain ;
+}

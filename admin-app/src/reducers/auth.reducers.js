@@ -22,7 +22,7 @@ const initState = {
 
 export default (state = initState, action) => {
 
-    console.log(action);
+    // console.log(action);
 
 
     switch (action.type) {

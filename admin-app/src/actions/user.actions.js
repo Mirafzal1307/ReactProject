@@ -1,6 +1,6 @@
 import {  userConstants } from './constants';
 import axios from '../helpers/axios';
-import { api } from '../urlConfig';
+
 
 
 export const signup = (user) => {

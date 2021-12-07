@@ -1,7 +1,7 @@
 import { productConstants } from "../actions/constants";
 
 const initialState = { 
- products : [ ]
+ products : [],
 
 
 }
@@ -10,13 +10,16 @@ const initialState = {
 
 
 
+
+
 export default (state  = initialState , action) => {
+    
     // eslint-disable-next-line default-case
     switch (action.type) {
         case productConstants.GET_ALL_PRODUCTS_SECCESS : 
         state = {
             ...state,
-            products: action.products
+            products: action.payload.products
     
         }
          break ;
@@ -24,4 +27,6 @@ export default (state  = initialState , action) => {
     }
 
     return state;
+   
 }
+ 

@@ -30,3 +30,24 @@ p{
   text-align: center;
   background: #fff;
 }
+
+
+.navbar-expand-lg .navbar-collapse {
+  justify-content: flex-end;
+}
+ button{
+   color: white; 
+   background-color: rgb(59, 155, 59);
+   border: none;
+   border-radius: 5px;
+   padding: 4px 50px;
+   
+ }
+
+
+ .input{
+   margin: 14px 0px !important;
+ }
+ .form-control{
+   margin: 15px 0px;
+ }

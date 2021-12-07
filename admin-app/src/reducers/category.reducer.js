@@ -9,7 +9,7 @@ const initState = {
 const buildNewCategories = (parentId, categories, category) => {
     let myCategories = [];
 
-    if (parentId == undefined) {
+    if (parentId === undefined) {
         return [
           ...categories, 
           { 
@@ -70,7 +70,7 @@ export default (state = initState, action) => {
             const category = action.payload.category;
 
             const updateCategories = buildNewCategories(category.parentId, state.categories, category)
-            console.log('updated categories', updateCategories)
+            // console.log('updated categories', updateCategories)
             state = {
                 ...state,
                 categories: updateCategories,
