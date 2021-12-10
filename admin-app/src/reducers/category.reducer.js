@@ -6,14 +6,44 @@ const initState = {
     error: null
 };
 
-const buildNewCategories = (categories, category) => {
+const buildNewCategories = (parentId, categories, category) => {
     let myCategories = [];
 
+    if (parentId === undefined) {
+        return [
+          ...categories, 
+          { 
+              _id : category._id,
+              name: category.name,
+              slug : category.slug ,
+              children : [] 
+          }
+        ];
+
+
+    }
+
+
     for (let cat of categories) {
-        myCategories.push({
-            ...cat,
-            children: cat.children && cat.children.length > 0 ? buildNewCategories(cat.children, category) : []
-        })
+
+        if (cat._id === parentId) {
+            myCategories.push({
+                ...cat,
+                children: cat.children ? buildNewCategories(parentId, [...cat.children, {
+                    _id: category._id,
+                    name: category.name,
+                    slug: category.slug,
+                    parentId: category.parentId,
+                    children: category.children
+                }], category) : []
+            })
+        } else {
+
+            myCategories.push({
+                ...cat,
+                children: cat.children ? buildNewCategories(parentId, cat.children, category) : []
+            })
+        }
     }
 
     return myCategories;
@@ -37,11 +67,13 @@ export default (state = initState, action) => {
             }
             break
         case categoryConstants.ADD_NEW_CATEGORY_SECCESS:
-            const updateCategories = buildNewCategories(state.categories, action.payload.category)
-            console.log(updateCategories)
+            const category = action.payload.category;
+
+            const updateCategories = buildNewCategories(category.parentId, state.categories, category)
+            // console.log('updated categories', updateCategories)
             state = {
                 ...state,
-                categories: buildNewCategories(state.categories, action.payload.category),
+                categories: updateCategories,
                 loading: false
             }
             break

@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { Container, Col, Row, Modal, Button } from 'react-bootstrap'
+import React, { /* useEffect  */  useState } from 'react'
+import { Container, Col, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
-import { addCategory, getAllCategory } from '../../actions';
+import { addCategory } from '../../actions';
 import Layout from '../../components/Layout';
 import Input from '../../components/UI/Input/Index';
+// import Input from '../../components/UI/Input/Index';
+import NewModal from '../../components/UI/Modal'
 
 function Category(props) {
 
@@ -16,11 +18,11 @@ function Category(props) {
     const [show, setShow] = useState(false);
 
     const dispatch = useDispatch();
-    useEffect(() => {
-        console.log(`Category.js`)
-        dispatch(getAllCategory());
+    // useEffect(() => {
+    //     console.log(`Category.js`)
+    //     dispatch(getAllCategory());
 
-    }, []);
+    // }, []);
 
 
     const handleClose = () => {
@@ -29,6 +31,8 @@ function Category(props) {
         form.append('parentId', parentCategoryId);
         form.append('categoryImage', categoryImage);
         dispatch(addCategory(form));
+        setCategoryName('');
+        setParentCategoryId('');
 
 
         setShow(false)
@@ -51,16 +55,14 @@ function Category(props) {
                 </li>
             );
         }
-        // const listItems = categories.map((category) =>
-        //     <li key={category._id} > {category.name}
-        //     </li>
-        // )
+       
 
 
 
         return myCategories;
 
     }
+    // eslint-disable-next-line no-unused-vars
     const createCategoryList = (categories, options = []) => {
 
         for (let category of categories) {
@@ -74,6 +76,7 @@ function Category(props) {
 
     }
 
+    // eslint-disable-next-line no-unused-vars
     const handleCategoryImage = (e) => {
         setCategoryImage(e.target.files[0]);
     }
@@ -100,18 +103,19 @@ function Category(props) {
 
                         <ul>
                             {renderCategories(category.categories)}
-                            {/* { JSON.stringify(createCategoryList(category.categories))} */}
+                       
                         </ul>
                     </Col>
                 </Row>
             </Container>
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Add New Category</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
+            <NewModal
+                show={show}
+                handleClose={handleClose}
+                madalTitle={'Add New Category'}
 
-                    <Input
+            >
+                
+                 <Input 
                         value={categoryName}
                         placeholder={`Category Name`}
                         onChange={(e) => setCategoryName(e.target.value)}
@@ -131,16 +135,12 @@ function Category(props) {
                     </select>
                     <input type="file" name="categoryImage" onChange={handleCategoryImage} />
 
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+   
+            </NewModal>
+
+
+
+
         </Layout>
     )
 }
