@@ -135,7 +135,7 @@ function Category(props) {
                     </select>
                     <input type="file" name="categoryImage" onChange={handleCategoryImage} />
 
-
+   
             </NewModal>
 
 

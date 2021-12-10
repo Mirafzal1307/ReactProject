@@ -10,7 +10,7 @@ import { addProduct } from '../../actions';
 import NewModal from '../../components/UI/Modal';
 import './style.css'
 // import Category from './../Category/index';
-import { generalPublicUrl} from '../../urlConfig'
+import { generatePublicUrl} from '../../urlConfig'
 
 
 const Products = (props) => {
@@ -232,7 +232,7 @@ const Products = (props) => {
                             {productDetails.productPictures.map(picture =>
                                 <div className="productImgContainer" >
 
-                                    <img src={generalPublicUrl(picture.img)} alt="rasm" />
+                                    <img src={generatePublicUrl(picture.img)} alt="rasm" />
 
                                 </div>
 
