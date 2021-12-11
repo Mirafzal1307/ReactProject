@@ -11,7 +11,7 @@ export const getAllCategory = () => {
 
 
             const { categoryList } = res.data;
-             
+
             dispatch({
                 type: categoryConstants.GET_ALL_CATEGORIES_SECCESS,
                 payload: { categories: categoryList }
@@ -44,6 +44,20 @@ export const addCategory = (form) => {
                 payload: res.data.error
 
             })
+        }
+    }
+}
+export const updateCategories = (form) => {
+
+    return async dispatch => {
+
+        
+        const res = await axios.post(`/category/update`, form)
+        if (res.status === 201) {
+            return true;
+            console.log(res);
+        } else {
+           console.log(res);
         }
     }
 }
