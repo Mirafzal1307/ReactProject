@@ -1,7 +1,10 @@
 import React, { /* useEffect  */  useState } from 'react'
 import { Container, Col, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
-import {  getAllCategory, addCategory, updateCategories } from '../../actions';
+import {
+    getAllCategory, addCategory, updateCategories,
+    deleteCategories as deleteCategoriesAction
+} from '../../actions';
 import Layout from '../../components/Layout';
 import Input from '../../components/UI/Input/Index';
 // import Input from '../../components/UI/Input/Index';
@@ -31,6 +34,7 @@ function Category(props) {
     const [checkedArray, setCheckedArray] = useState([]);
     const [expandedArray, setExpandedArray] = useState([]);
     const [updateCategoryModal, setUpdateCategoryModal] = useState(false)
+    const [deleteCategoryModal, setDeleteCategoryModal] = useState(false);
     const dispatch = useDispatch();
 
     // useEffect(() => {
@@ -95,7 +99,12 @@ function Category(props) {
     }
 
     const updateCateogry = () => {
+        updateCheckAndExpandedCategories();
         setUpdateCategoryModal(true);
+
+    }
+
+    const updateCheckAndExpandedCategories = () => {
         const categories = createCategoryList(category.categories);
 
         const checkedArray = [];
@@ -112,16 +121,15 @@ function Category(props) {
         setCheckedArray(checkedArray);
         setExpandedArray(expandedArray);
 
-        console.log({ expanded, checked, categories, checkedArray, expandedArray });
 
     }
 
     const handleCategoryInput = (key, value, index, type) => {
         if (type == "checked") {
-            const updatedCheckedArray = checkedArray.map((item, _index) => index === _index ? { ...item, [key]: value } : item)
+            const updatedCheckedArray = checkedArray.map((item, _index) => index == _index ? { ...item, [key]: value } : item);
             setCheckedArray(updatedCheckedArray)
         } else if (type == "expanded") {
-            const updatedExpandedArray = expandedArray.map((item, _index) => index === _index ? { ...item, [key]: value } : item)
+            const updatedExpandedArray = expandedArray.map((item, _index) => index == _index ? { ...item, [key]: value } : item)
             setExpandedArray(updatedExpandedArray)
         }
 
@@ -146,11 +154,11 @@ function Category(props) {
         });
 
         dispatch(updateCategories(form))
-        .then(result => {
-            if(result) {
-                dispatch(getAllCategory())
-            }
-        })
+            .then(result => {
+                if (result) {
+                    dispatch(getAllCategory())
+                }
+            })
 
         setUpdateCategoryModal(false)
     }
@@ -180,14 +188,14 @@ function Category(props) {
                                 <Input
                                     value={item.name}
                                     placeholder={`Category Name`}
-                                    onChange={(e) => handleCategoryInput('parentId', e.target.value, index, 'expanded')}
+                                    onChange={(e) => handleCategoryInput('name', e.target.value, index, 'expanded')}
                                 />
                             </Col>
                             <Col>
                                 <select className="form-control"
                                     value={item.parentId}
 
-                                    onChange={(e) => handleCategoryInput('name', e.target.value, index, 'expanded')}>
+                                    onChange={(e) => handleCategoryInput('parentId', e.target.value, index, 'expanded')}>
                                     <option>
                                         Select category
                                     </option>
@@ -227,14 +235,14 @@ function Category(props) {
                                 <Input
                                     value={item.name}
                                     placeholder={`Category Name`}
-                                    onChange={(e) => handleCategoryInput('parentId', e.target.value, index, 'checked')}
+                                    onChange={(e) => handleCategoryInput('name', e.target.value, index, 'checked')}
                                 />
                             </Col>
                             <Col>
                                 <select className="form-control"
                                     value={item.parentId}
 
-                                    onChange={(e) => handleCategoryInput('name', e.target.value, index, 'checked')}>
+                                    onChange={(e) => handleCategoryInput('parentId', e.target.value, index, 'checked')}>
                                     <option>
                                         Select category
                                     </option>
@@ -273,7 +281,9 @@ function Category(props) {
             </NewModal>
         )
     }
-    const renderAddCategoriesModal = () => {
+
+
+    const renderAddCategoryModal = () => {
         return (
             <NewModal
                 show={show}
@@ -302,6 +312,70 @@ function Category(props) {
                 </select>
                 <input type="file" name="categoryImage" onChange={handleCategoryImage} />
 
+
+            </NewModal>
+        )
+    }
+
+
+    const deleteCategory = () => {
+        updateCheckAndExpandedCategories()
+        setDeleteCategoryModal(true)
+    }
+
+    const deleteCategories = () => {
+        const checkedIdsArray = checkedArray.map((item, index) => ({ _id: item.value }));
+        const expandedIdsArray = expandedArray.map((item, index) => ({ _id: item.value }));
+        const idsArray = expandedIdsArray.concat(checkedIdsArray);
+        dispatch(deleteCategoriesAction(idsArray))
+            .then(result => {
+                if (result) {
+                    dispatch(getAllCategory())
+                    setDeleteCategoryModal(false)
+                }
+            });
+    }
+
+
+    const renderDeleteCategoryModal = () => {
+        console.log('delete', expandedArray)
+        return (
+
+
+
+            <NewModal
+                modalTitle="Confirm"
+                show={deleteCategoryModal}
+                handleClose={() => setDeleteCategoryModal(false)}
+                buttons={[
+                    {
+                        label: 'No',
+                        color: 'primary',
+                        onClick: () => {
+                            alert('No');
+                        }
+
+                    },
+                    {
+                        label: 'Yes',
+                        color: 'danger',
+                        onClick: deleteCategories
+
+                    }
+                ]}
+            >
+
+                <h5> Expanded</h5>
+                {
+                    expandedArray.map((item, index) => <span key={index} >{item.name}</span>)
+
+                }
+                <h5>
+                    Checked
+                </h5>
+                {
+                    checkedArray.map((item, index) => <span key={index} >{item.name}</span>)
+                }
 
             </NewModal>
         )
@@ -353,13 +427,14 @@ function Category(props) {
                 </Row>
                 <Row>
                     <Col>
-                        <button> Delete</button>
+                        <button onClick={deleteCategory} > Delete</button>
                         <button onClick={updateCateogry} > Edit</button>
                     </Col>
                 </Row>
             </Container>
-            {renderAddCategoriesModal()}
+            {renderAddCategoryModal()}
             {renderUpdateCategoriesModal()}
+            {renderDeleteCategoryModal()}
 
 
 
