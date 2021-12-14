@@ -61,6 +61,7 @@ export const updateCategories = (form) => {
         const res = await axios.post(`/category/update`, form)
         if (res.status === 201) {
             return true;
+            // eslint-disable-next-line no-unreachable
             console.log(res);
         } else {
             console.log(res);

@@ -26,7 +26,7 @@ const buildNewCategories = (parentId, categories, category) => {
 
     for (let cat of categories) {
 
-        if (cat._id == parentId) {
+        if (cat._id === parentId) {
             const newCategory = {
                 _id: category._id,
                 name: category.name,

@@ -1,0 +1,35 @@
+.modal-header {
+    padding: 5px 15px;
+    background-color: #333 !important;
+}
+
+.modal-title {
+    font-size: 18px;
+    color: #fff !important;
+}
+
+.modal-footer {
+    padding: 5px 15px;
+}
+
+.actionBtnContainer {
+
+    display: flex !important;
+    align-items: center;
+
+}
+
+.actionBtnContainer > button {
+    border: 0;
+    margin: 0 5px;
+    font-size: 14px;
+   
+}
+button{
+     margin: 20px 8px;
+}
+svg{
+    text-align: center;
+    font-size: 24px !important;
+    margin: 5px 13px 5px 0px;
+}
