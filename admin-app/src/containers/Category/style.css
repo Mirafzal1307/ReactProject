@@ -16,6 +16,7 @@
 
     display: flex !important;
     align-items: center;
+    margin-top: 75px;
 
 }
 
@@ -31,5 +32,5 @@ button{
 svg{
     text-align: center;
     font-size: 24px !important;
-    margin: 5px 13px 5px 0px;
+
 }

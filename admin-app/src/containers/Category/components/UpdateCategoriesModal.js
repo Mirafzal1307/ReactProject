@@ -1,7 +1,7 @@
 import React from "react"
 import Input from '../../../components/UI/Input/Index';
 import NewModal from '../../../components/UI/Modal';
-import {Row , Col} from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 
 
 const UpdateCategoriesModal = (props) => {
@@ -9,20 +9,20 @@ const UpdateCategoriesModal = (props) => {
     const {
         show,
         handleClose,
-        madalTitle,
+        modalTitle,
         size,
         expandedArray,
         checkedArray,
         handleCategoryInput,
         categoryList,
     } = props
-
+    console.log({ expandedArray, checkedArray });
     return (
 
         <NewModal
             show={show}
             handleClose={handleClose}
-            madalTitle={madalTitle}
+            modalTitle={modalTitle}
             size={size}
 
         >
@@ -54,13 +54,17 @@ const UpdateCategoriesModal = (props) => {
                                     Select category
                                 </option>
                                 {
-                                   categoryList.map(option => <option key={option.value} value={option.value}  >{option.name}</option>)
+                                    categoryList.map(option => <option key={option.value} value={option.value}  >{option.name}</option>)
                                 }
 
                             </select>
                         </Col>
                         <Col>
-                            <select className="form-control" >
+                            <select className="form-control"
+                                value={item.type}
+                                onChange={(e) => handleCategoryInput('type', e.target.value, index, 'expanded')}
+
+                            >
                                 <option value="" >
                                     Select Type
                                 </option>
@@ -107,7 +111,11 @@ const UpdateCategoriesModal = (props) => {
                             </select>
                         </Col>
                         <Col>
-                            <select className="form-control" >
+                            <select className="form-control"
+                                value={item.type}
+                                onChange={(e) => handleCategoryInput('type', e.target.value, index, 'checked')}
+                            >
+
                                 <option value="" >
                                     Select Type
                                 </option>
