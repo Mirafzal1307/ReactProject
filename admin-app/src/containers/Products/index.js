@@ -10,7 +10,7 @@ import { addProduct } from '../../actions';
 import NewModal from '../../components/UI/Modal';
 import './style.css'
 // import Category from './../Category/index';
-import { generatePublicUrl} from '../../urlConfig'
+import { generatePublicUrl } from '../../urlConfig'
 
 
 const Products = (props) => {

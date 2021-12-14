@@ -165,11 +165,7 @@ function Category(props) {
         });
 
         dispatch(updateCategories(form))
-            .then(result => {
-                if (result) {
-                    dispatch(getAllCategory())
-                }
-            })
+           
 
         setUpdateCategoryModal(false)
     }
