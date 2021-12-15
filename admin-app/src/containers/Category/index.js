@@ -94,7 +94,12 @@ function Category(props) {
     const createCategoryList = (categories, options = []) => {
 
         for (let category of categories) {
-            options.push({ value: category._id, name: category.name, parentId: category.parentId });
+            options.push({
+                value: category._id,
+                name: category.name,
+                parentId: category.parentId , 
+                type: category.type
+            });
             if (category.children.length > 0) {
                 createCategoryList(category.children, options)
             }
@@ -165,7 +170,7 @@ function Category(props) {
         });
 
         dispatch(updateCategories(form))
-           
+
 
         setUpdateCategoryModal(false)
     }
@@ -194,7 +199,7 @@ function Category(props) {
         }
 
 
-
+        setDeleteCategoryModal(false);
     }
 
 
@@ -255,7 +260,7 @@ function Category(props) {
                             <h3>
                                 Category
                             </h3>
-                            <div categoryName="actionBtnContainer" >
+                            <div className="actionBtnContainer" >
                                 <span>
                                     Action:
                                 </span>
@@ -291,11 +296,6 @@ function Category(props) {
                 <Row>
                     <Col md={12}>
 
-                        {/* <ul>
-                            {renderCategories(category.categories)}
-
-                        </ul> */}
-
                         <CheckboxTree
                             nodes={renderCategories(category.categories)}
                             checked={checked}
@@ -320,7 +320,7 @@ function Category(props) {
             <AddCategoryModal
                 show={show}
                 handleClose={handleClose}
-                madalTitle="Add New Category"
+                modalTitle="Add New Category"
                 categoryName={categoryName}
                 setCategoryName={setCategoryName}
                 parentCategoryId={parentCategoryId}
@@ -333,7 +333,7 @@ function Category(props) {
             <UpdateCategoriesModal
                 show={updateCategoryModal}
                 handleClose={updateCategoriesForm}
-                madalTitle="Update Categories"
+                modalTitle="Update Categories"
                 size="lg"
                 expandedArray={expandedArray}
                 checkedArray={checkedArray}
