@@ -46,7 +46,7 @@ function NewPage() {
                         <Col>
                             <select className="form-control"
                                 value={categoryId}
-                                onchange={(e) => setCategoryId(e.target.value)}
+                                onChange={(e) => setCategoryId(e.target.value)}
                             >
                                 <option value="">
                                     select category
