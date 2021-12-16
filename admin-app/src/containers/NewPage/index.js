@@ -20,6 +20,8 @@ function NewPage() {
     const [banners, setBanners] = useState([]);
     const [products, setProducts] = useState([]);
     const dispatch = useDispatch()
+    const page = useSelector(state => state.page)
+
 
     useEffect(() => {
 
@@ -27,6 +29,21 @@ function NewPage() {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [category])
+
+    useEffect(() => {
+        console.log(page);
+        if (!page.loading) {
+            setCreateModal(false);
+            setTitle('');
+            setCategoryId('');
+            setDesc('');
+            setProducts([]);
+            setBanners([]);
+
+
+        }
+    }, [page])
+
     const onCategoryChange = (e) => {
         const category = categories.find(category => category._id === e.target.value)
         setCategoryId(e.target.value)
@@ -64,7 +81,7 @@ function NewPage() {
 
         dispatch(createPage(form))
 
-        console.log({ title, desc, categoryId, type, banners, products })
+
     }
 
 
@@ -75,6 +92,7 @@ function NewPage() {
                 modalTitle={'Create New Page'}
                 handleClose={() => setCreateModal(false)}
                 onSubmit={submitPageForm}
+
             >
                 <Container>
                     <Row>
@@ -103,7 +121,7 @@ function NewPage() {
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                                 placeholder={'Page Title'}
-                                className="form-control-sm"
+                                className=""
                             >
                             </Input>
                         </Col>
@@ -113,7 +131,7 @@ function NewPage() {
                             <Input
                                 value={desc}
                                 onChange={(e) => setDesc(e.target.value)}
-                                placeholder={'Page Description'}
+                                placeholder={'Page Desc'}
                                 className="form-control-sm"
                             >
                             </Input>
@@ -182,9 +200,18 @@ function NewPage() {
 
     return (
         <Layout sidebar >
-            {renderCreatePageModal()}
-            <button onClick={() => setCreateModal(true)} >  Create Page</button>
-        </Layout>
+            {
+                page.loading ?
+                    <p> Creating page please wait...</p>
+                    :
+                    <>
+                        {renderCreatePageModal()}
+                        < button onClick={() => setCreateModal(true)} >  Create Page</button>
+                    </>
+
+            }
+
+        </Layout >
     )
 }
 

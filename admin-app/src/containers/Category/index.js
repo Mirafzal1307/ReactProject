@@ -1,4 +1,5 @@
-import React, { /* useEffect  */  useState } from 'react'
+
+import React, { /* useEffect  */  useEffect, useState } from 'react'
 import { Container, Col, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -41,20 +42,22 @@ function Category(props) {
     const [deleteCategoryModal, setDeleteCategoryModal] = useState(false);
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     console.log(`Category.js`)
-    //     dispatch(getAllCategory());
+    useEffect(() => {
+        if (!category.loading) {
+            setShow(false);
+        }
 
-    // }, []);
+    }, [category.loading]);
 
 
     const handleClose = () => {
         const form = new FormData();
 
-        // if(categoryName === ""){
-        //     alert("Name is required")
-        //     return;
-        // }
+        if (categoryName === "") {
+            alert('Category name is required');
+            setShow(false);
+            return
+        }
 
 
         form.append('name', categoryName);
@@ -97,7 +100,7 @@ function Category(props) {
             options.push({
                 value: category._id,
                 name: category.name,
-                parentId: category.parentId , 
+                parentId: category.parentId,
                 type: category.type
             });
             if (category.children.length > 0) {
@@ -126,11 +129,13 @@ function Category(props) {
         const checkedArray = [];
         const expandedArray = [];
         checked.length > 0 && checked.forEach((categoryId, index) => {
-            const category = categories.find((category, _index) => categoryId === category.value);
+            const category = categories.find((category, _index) =>
+                categoryId === category.value);
             category && checkedArray.push(category)
         })
         expanded.length > 0 && expanded.forEach((categoryId, index) => {
-            const category = categories.find((category, _index) => categoryId === category.value);
+            const category = categories.find((category, _index) =>
+                categoryId === category.value);
             category && expandedArray.push(category)
         })
 
@@ -170,9 +175,6 @@ function Category(props) {
         });
 
         dispatch(updateCategories(form))
-
-
-        setUpdateCategoryModal(false)
     }
 
 
@@ -319,7 +321,8 @@ function Category(props) {
 
             <AddCategoryModal
                 show={show}
-                handleClose={handleClose}
+                handleClose={() => setShow(false)}
+                onSubmit={handleClose}
                 modalTitle="Add New Category"
                 categoryName={categoryName}
                 setCategoryName={setCategoryName}
@@ -332,7 +335,8 @@ function Category(props) {
 
             <UpdateCategoriesModal
                 show={updateCategoryModal}
-                handleClose={updateCategoriesForm}
+                handleClose={() => setUpdateCategoryModal(false)}
+                omSubmit={updateCategoriesForm}
                 modalTitle="Update Categories"
                 size="lg"
                 expandedArray={expandedArray}
