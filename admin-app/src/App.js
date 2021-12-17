@@ -16,16 +16,22 @@ import NewPage from './containers/NewPage';
 function App() {
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth)
-
+// componentDidMount or componentDidUpdate
   useEffect(() => {
     if (!auth.authenticate) {
       dispatch(isUserLoggedIn());
     }
-    dispatch(getInitialData())
+
+    if (auth.authenticate) {
+      dispatch(getInitialData());
+    }
 
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
+
+  
+  
+  }, [auth.authenticate]);
 
   return (
     <div className="App">

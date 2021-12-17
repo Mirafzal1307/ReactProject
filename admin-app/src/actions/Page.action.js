@@ -9,7 +9,7 @@ export const createPage = (form) => {
         try{ 
 
             const res = await axios.post('/page/create', form);
-            if(res.status === 200) {
+            if(res.status === 201) {
                   
                 dispatch({
                      type : pageConstants.CREATE_PAGE_SUCCESS,
