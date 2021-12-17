@@ -7,15 +7,18 @@ function Input(props) {
         case 'select':
             input = <Form.Group  >
                 {props.label && <Form.Label >{props.label}</Form.Label>}
-                <select >
-                    <option>
-
+                <select className='form-control  form-control-sm '
+                    value={props.value}
+                    onChange={props.onChange}
+                >
+                    <option value="">
+                        {props.placeholder}
                     </option>
                     {
 
-                        options.length > 0 ?
-                            options.map((option , index) =>
-                                <option key={index}>
+                        props.options.length > 0 ?
+                            props.options.map((option, index) =>
+                                <option key={index} value={option.value} >
                                     {option.name}
                                 </option>
                             ) : null
