@@ -9,22 +9,47 @@ const initState = {
         under15k: [],
         under20k: [],
         under30k: [],
-    }
+    },
+    pageRequest: false,
+    page: {},
+    error: null
+
 }
 
 export default (state = initState, action) => {
-   // eslint-disable-next-line default-case
-   switch(action.type) {
-       case productConstants.GET_PRODUCTS_BY_SLUG: 
-       state= {
-           ...state,
-           products: action.payload.products ,
-           productsByPrice : {
-               ...action.payload.productsByPrice
-           }
-       }
-       break
-   }
+    // eslint-disable-next-line default-case
+    switch (action.type) {
+        case productConstants.GET_PRODUCTS_BY_SLUG:
+            state = {
+                ...state,
+                products: action.payload.products,
+                productsByPrice: {
+                    ...action.payload.productsByPrice
+                }
+            }
+            break
+        case productConstants.GET_PRODUCTS_PAGE_REQUEST:
+            state = {
+                ...state,
 
-   return state
+                pageRequest: true
+            }
+            break
+        case productConstants.GET_PRODUCTS_PAGE_SUCCESS:
+            state = {
+                ...state,
+                page: action.payload.page,
+                pageRequest: false
+            }
+            break
+        case productConstants.GET_PRODUCTS_PAGE_FAILURE:
+            state = {
+                ...state,
+             pageRequest : false ,
+             eror: action.payload.eror
+            }
+            break
+    }
+
+    return state
 }
