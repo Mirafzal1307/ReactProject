@@ -24,6 +24,7 @@ function ProductPage(props) {
 
         dispatch(getProductPage(payload))
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
@@ -38,11 +39,8 @@ function ProductPage(props) {
                 >
                     {
 
-                        page.banners && page.banners.map((banner, index) => {
-
-                            <a
-
-                                key={index}
+                        page.banners && page.banners.map((banner, index) => 
+                        <a      key={index}
                                 style={{ display: 'block' }}
                                 href={banner.navigateTo}
                             >
@@ -50,7 +48,7 @@ function ProductPage(props) {
 
                             </a>
 
-                        })
+                        )
 
 
 
@@ -74,7 +72,7 @@ function ProductPage(props) {
                         >
                             <img style={{
                                 width: '100%',
-                                height : '100%',
+                                height: '100%',
 
                             }} src={product.img} alt="" />
                         </Card>
