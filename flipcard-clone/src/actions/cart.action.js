@@ -8,16 +8,30 @@ export const addToCart = (product) => {
         // console.log('action :: products', products);
         // const product = action.payload.product ;
         // const products = state.products;
-        const qty = cartItems[product._id] ? parseInt(products[product._id].qty + 1) : 1 ; 
-        products[product._id] = {
+        const qty = cartItems[product._id] ? parseInt(cartItems[product._id].qty + 1) : 1;
+        cartItems[product._id] = {
             ...product,
             qty
         };
-        localStorage.setItem('cart', JSON.stringify(products));
+        localStorage.setItem('cart', JSON.stringify(cartItems));
         dispatch({
 
             type: cartConstants.ADD_TO_CART,
-            payload: { products }
+            payload: { cartItems }
         })
+    }
+}
+export const updateCart = () => {
+    return async dispatch => {
+        const cartItems = localStorage.getItem('cart') ?
+            JSON.parse(localStorage.getItem('cart')) : null;
+
+        if (cartItems) {
+            dispatch({
+                type: cartConstants.ADD_TO_CART,
+                payload: { cartItems }
+
+            })
+        }
     }
 }
