@@ -3,16 +3,17 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductDetailsById } from '../../actions';
 import Layout from '../../components/Layout';
-import { 
-  IoIosArrowForward, 
-  IoIosStar, 
-  IoMdCart 
+import {
+  IoIosArrowForward,
+  IoIosStar,
+  IoMdCart
 } from 'react-icons/io';
 import { BiRupee } from 'react-icons/bi';
 import { AiFillThunderbolt } from 'react-icons/ai';
 import { MaterialButton } from '../../components/MaterialUI';
 import './style.css';
 import { generatePublicUrl } from '../../urlConfig';
+import { addToCart } from '../../actions/cart.action';
 
 
 
@@ -30,10 +31,10 @@ const ProductDetailsPage = (props) => {
       }
     }
     dispatch(getProductDetailsById(payload));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if(Object.keys(product.productDetails).length === 0){
+  if (Object.keys(product.productDetails).length === 0) {
     return null;
   }
 
@@ -44,10 +45,10 @@ const ProductDetailsPage = (props) => {
         <div className="flexRow">
           <div className="verticalImageStack">
             {
-              product.productDetails.productPictures.map((thumb, index) => 
-              <div className="thumbnail">
-                <img src={generatePublicUrl(thumb.img)} alt={thumb.img} />
-              </div>
+              product.productDetails.productPictures.map((thumb, index) =>
+                <div className="thumbnail">
+                  <img src={generatePublicUrl(thumb.img)} alt={thumb.img} />
+                </div>
               )
             }
             {/* <div className="thumbnail active">
@@ -72,6 +73,12 @@ const ProductDetailsPage = (props) => {
                   marginRight: '5px'
                 }}
                 icon={<IoMdCart />}
+                onClick={() => {
+                  const { _id, name, price } = product.productDetails;
+                  const img = product.productDetails.productPictures[0].img;
+                  dispatch(addToCart({ _id, name, price, img }))
+                  props.history.push(`/cart`)
+                }}
               />
               <MaterialButton
                 title="BUY NOW"
@@ -98,7 +105,7 @@ const ProductDetailsPage = (props) => {
           </div>
           {/* product description */}
           <div className="productDetails">
-              <p className="productTitle">{product.productDetails.name}</p>
+            <p className="productTitle">{product.productDetails.name}</p>
             <div>
               <span className="ratingCount">4.3 <IoIosStar /></span>
               <span className="ratingNumbersReviews">72,234 Ratings & 8,140 Reviews</span>
@@ -108,13 +115,13 @@ const ProductDetailsPage = (props) => {
               <span className="price"><BiRupee />{product.productDetails.price}</span>
               <span className="discount" style={{ margin: '0 10px' }}>22% off</span>
               {/* <span>i</span> */}
-              </div>
+            </div>
             <div>
-              <p style={{ 
-                color: '#212121', 
+              <p style={{
+                color: '#212121',
                 fontSize: '14px',
-                fontWeight: '600' 
-                }}>Available Offers</p>
+                fontWeight: '600'
+              }}>Available Offers</p>
               <p style={{ display: 'flex' }}>
                 <span style={{
                   width: '100px',
@@ -122,15 +129,15 @@ const ProductDetailsPage = (props) => {
                   color: '#878787',
                   fontWeight: '600',
                   marginRight: '20px'
-              }}>Description</span>
-              <span style={{
-                fontSize: '12px',
-                color: '#212121',
-              }}>{product.productDetails.description}</span>
+                }}>Description</span>
+                <span style={{
+                  fontSize: '12px',
+                  color: '#212121',
+                }}>{product.productDetails.description}</span>
               </p>
             </div>
           </div>
-          
+
 
         </div>
       </div>

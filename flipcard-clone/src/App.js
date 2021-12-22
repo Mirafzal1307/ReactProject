@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { isUserLoggedIn } from './actions';
 import ProductDetailsPage from './containers/ProductDetailsPage';
 import CardPage from './containers/CardPage';
+import { updateCart } from './actions/cart.action';
 
 
 
@@ -27,7 +28,9 @@ function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.authenticate])
 
-
+useEffect(() => {
+  dispatch(updateCart());
+}, [])
   return (
     <div className="App">
       <Router>
@@ -44,3 +47,4 @@ function App() {
 }
 
 export default App;
+
