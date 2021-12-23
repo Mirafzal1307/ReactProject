@@ -44,7 +44,7 @@ function ProductPage(props) {
                                 style={{ display: 'block' }}
                                 href={banner.navigateTo}
                             >
-                                <img src={banner.img} alt="" />
+                                <img src='https://muzfmuz.com/uploads/posts/2020-02/medium/1582036831_leo_17s_84451879_211545076559258_8486046594401863070_n.jpg' alt="" />
 
                             </a>
 

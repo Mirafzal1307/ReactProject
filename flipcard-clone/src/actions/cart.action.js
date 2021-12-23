@@ -1,3 +1,4 @@
+
 import axios from "../helpers/axios"
 import { cartConstants } from './constants';
 import store from '../store';
@@ -45,7 +46,7 @@ export const addToCart = (product, newQty = 1) => {
 
         if (auth.authenticate) {
             dispatch({ type: cartConstants.ADD_TO_CART_REQUEST });
-            payload: {
+            const payload = {
                 //cartItems : Object.keys(cartItems).map((key, index) => {
                 //     return {
                 //         quantity: cartItems[key].qty,
@@ -53,11 +54,13 @@ export const addToCart = (product, newQty = 1) => {
                 //     }
                 // 
                 // })
+                // eslint-disable-next-line no-labels
                 cartItems: [{
                     product: product._id,
                     quantity: qty
                 }]
             };
+
             console.log(payload);
             const res = await axios.post(`/user/cart/addtocart`, payload);
             console.log(res);
