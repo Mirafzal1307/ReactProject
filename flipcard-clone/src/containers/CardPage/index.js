@@ -1,16 +1,37 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Layout from '../../components/Layout'
 import Card from '../../components/UI/Card'
+import CartItem from './CartItem';
+import { addToCart } from '../../actions'
 
 function CardPage(props) {
 
     const cart = useSelector(state => state.cart);
-    const cartItems = cart.cartItems
+    // const cartItems = cart.cartItems;
+    const [cartItems, setCartItems] = useState(cart.cartItems);
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+
+        setCartItems(cart.cartItems);
+    }, [cart.cartItems]);
+
+    const onQuantityIncrement = (_id, qty) => {
+        const { name, price, img } = cartItems[_id];
+        dispatch(addToCart({ _id, name, price, img }, 1))
+
+    }
+
+    const onQuantityDecrement = (_id, qty) => {
+        const { name, price, img } = cartItems[_id];
+        dispatch(addToCart({ _id, name, price, img }, -1))
+
+    }
 
     return (
         <Layout>
-            <div className="cardContainer" >
+            <div className="cardContainer" style={{ alignItems: 'flex-start' }}>
                 <Card headerLeft={`My Cart`}
                     headerRight={<div>
                         Deliver To
@@ -18,27 +39,22 @@ function CardPage(props) {
                 >
                     {
                         Object.keys(cartItems).map((key, index) =>
-                            <div key={index} className="flexRow">
-                                <div className="cardProductContainer">
-                                    <img src=" " alt="" />
+                            <CartItem
+                                key={index}
+                                cartItem={cartItems[key]}
+                                onQuantityInc={onQuantityIncrement}
+                                onQuantityDecrement={onQuantityDecrement}
 
 
-
-                                </div>
-                                <div className="cardItemDetails">
-                                    <div>
-                                      {cartItems[key].name} - qty - {cartItems[key].qty}
-                                    </div>
-                                    <div>Delivery in 3- 5 days </div>
-                                </div>
-                            </div>)
+                            />
+                        )
 
                     }
 
                 </Card>
-                <Card style={{ width: '500px' }} >
+                <Card style={{ width: '500px' }} headerLeft='Price' >
                     Price
-
+   
                 </Card>
             </div>
         </Layout>
@@ -46,3 +62,4 @@ function CardPage(props) {
 }
 
 export default CardPage
+
