@@ -28,7 +28,7 @@ export const getAddress = () => {
 
 
 
-export const addAddress = (address) => {
+export const addAddress = (payload) => {
     return async dispatch => {
         try {
             const res = await axios.post(`/user/address/create`, {payload} )
