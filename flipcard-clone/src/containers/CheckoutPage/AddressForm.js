@@ -187,7 +187,7 @@ export const AddressForm = (props) => {
                         onClick={onAddressSubmit}
                         style={{
                             width: ' 250px',
-                            margin: '20px 0'
+                            margin: '20px 0'  
                         }}
                     />
 

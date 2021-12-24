@@ -9,6 +9,7 @@ import { isUserLoggedIn } from './actions';
 import ProductDetailsPage from './containers/ProductDetailsPage';
 import CardPage from './containers/CardPage';
 import { updateCart } from './actions/cart.action';
+import CheckoutPage from './containers/CheckoutPage';
 
 
 
@@ -38,7 +39,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route path="/cart" element={<CardPage />} />
-          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/:productSlug/:productId/p" element={<ProductDetailsPage />} />
           <Route path="/:slug" element={<ProductListPage />} />
 
