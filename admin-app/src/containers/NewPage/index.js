@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
+import { createPage } from '../../actions';
 import Layout from '../../components/Layout'
 import Input from '../../components/UI/Input/Index'
 import NewModal from '../../components/UI/Modal';
 import linearCategories from '../../helpers/linearCategories';
-import { createPage } from '../../actions'
+
 
 function NewPage() {
 

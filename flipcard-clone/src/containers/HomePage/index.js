@@ -1,15 +1,22 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
+import Header from '../../components/Header'
 import Layout from '../../components/Layout'
+// eslint-disable-next-line no-unused-vars
+import MenuHeader from '../../components/MenuHeader'
 
+/**
+* @author
+* @function HomePage
+**/
 
-function HomePage() {
+const HomePage = (props) => {
     return (
-        <div>
         <Layout>
-            Home Page 
+            Home Page
         </Layout>
-        </div>
     )
+
 }
 
 export default HomePage

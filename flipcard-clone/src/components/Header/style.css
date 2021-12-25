@@ -1,104 +1,116 @@
-.header{
-    width: 100%;
-    height: 56px;
-    background: #2874f0;
-}
-.subHeader{
-    max-width: 1100px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    margin: 0 auto;   
-    align-items: center;
+.header {
+  width: 100%;
+  height: 56px;
+  background: #2874f0;
 }
 
-.logo{
-    width: 137px;
-    height: 100%;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
+.subHeader {
+  max-width: 1100px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
 }
-.logo .logoimage{
-    width: 75px;
+
+.logo {
+  width: 137px;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
 }
-.exploreText{ 
-    font-size: 10px;
-    font-style: italic; 
+
+.logo .logoimage {
+  width: 75px;
 }
-.plusText{ 
-    font-size: 10px; 
-    margin: 0 2px; 
-    text-transform: capitalize;
-    font-style: italic;
-    color: yellow;
-  }
-.logo .goldenStar{
-    width: 10px;
-    height: 10px;
+
+.exploreText {
+  font-size: 10px;
+  font-style: italic;
+}
+
+.plusText {
+  font-size: 10px;
+  margin: 0 2px;
+  text-transform: capitalize;
+  font-style: italic;
+  color: yellow;
+}
+
+.logo .goldenStar {
+  width: 10px;
+  height: 10px;
 }
 
 .searchInputContainer {
-    width: 560px;
-    position: relative;
-    background: #fff;
-    height: 36px;
-    border-radius: 1px;
-    overflow: hidden;
-    display: flex;
-  }
-.searchInput {
-    width: 518px;
-    border: 0;
-    height: 36px;
-    outline: none;
-    box-sizing: border-box;
-    padding: 0 10px;
-  }
-.searchIconContainer {
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-  }
-  .rightMenu{
-    display: flex;
-    flex: 1;
-    justify-content: flex-end;
-    align-items: center;
-  }
-.loginButton {
-    display: block;
-    width: 100px;
-    height: 30px;
-    background: #fff;
-    text-align: center;
-    line-height: 30px;
-    color: #2874f0;
-    font-weight: 500;
-    font-size: 16px;
-    cursor: pointer;
-  }
-.more , .fullName {
-    font-weight: bold;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    margin: 0 20px;
-    cursor: pointer;
-  }
-.cart {
-    font-weight: bold;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 20px
-  }
+  width: 560px;
+  position: relative;
+  background: #fff;
+  height: 36px;
+  border-radius: 1px;
+  overflow: hidden;
+  display: flex;
+}
 
-.authContainer{
+.searchInput {
+  width: 518px;
+  border: 0;
+  height: 36px;
+  outline: none;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+
+.searchIconContainer {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.rightMenu {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.loginButton {
+  display: block;
+  width: 100px;
+  height: 30px;
+  background: #fff;
+  text-align: center;
+  line-height: 30px;
+  color: #2874f0;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.more,
+.fullName {
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  margin: 0 20px;
+  cursor: pointer;
+}
+
+.cart {
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 20px
+}
+
+.authContainer {
   color: #212121;
   margin: 0 auto;
   border-radius: 2px;
@@ -106,16 +118,17 @@
   max-width: 750px;
   min-width: 650px;
 }
-.row{
+
+.row {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
   height: 528px;
-    max-width: 750px;
-    min-width: 650px;
+  max-width: 750px;
+  min-width: 650px;
 }
 
-.leftspace{
+.leftspace {
   width: 40%;
   height: 100%;
   color: #fff;
@@ -128,16 +141,16 @@
   box-sizing: border-box;
 }
 
-.rightspace{
+.rightspace {
   display: flex;
   flex: 1;
   flex-direction: column;
   align-items: center;
 }
 
-.loginInputContainer{
+.loginInputContainer {
   width: 100%;
   box-sizing: border-box;
   padding: 0 30px;
   margin: 40px 0;
-}
+} 

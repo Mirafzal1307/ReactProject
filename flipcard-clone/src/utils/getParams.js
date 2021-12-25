@@ -1,17 +1,18 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (query) => {
-    if (query) {
-        const queryStirng = query.split('?')[1];
-        if (queryStirng.length > 0) {
-            const params = queryStirng.split("&");
-            const paramObj = {};
+    if(query){
+        const queryString = query.split("?")[1];
+        if(queryString.length > 0){
+            const params = queryString.split("&");
+            const paramsObj = {};
             params.forEach(param => {
                 const keyValue = param.split("=");
-                paramObj[keyValue[0]] = keyValue[1];
+                paramsObj[keyValue[0]] = keyValue[1];
             });
 
-            return paramObj;
+            return paramsObj;
         }
     }
+
     return {};
 }
