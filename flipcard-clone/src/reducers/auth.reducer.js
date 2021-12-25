@@ -1,73 +1,70 @@
 /* eslint-disable default-case */
-
-import { authConstants } from "../actions/constants"
+import { authConstants } from "../actions/constants";
 
 const initState = {
     token: null,
     user: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        picures: ''
+        firstName: "",
+        lastName: "",
+        email: "",
+        picture: "",
     },
     authenticate: false,
     authenticating: false,
     loading: false,
     error: null,
-    message: ''
-
-}
-
-
+    message: "",
+};
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initState, action) => {
-
     console.log(action);
-
 
     switch (action.type) {
         case authConstants.LOGIN_REQUEST:
             state = {
                 ...state,
-                authenticating: true
-            }
+                authenticating: true,
+            };
             break;
-
-        case authConstants.LOGIN_SECCESS:
+        case authConstants.LOGIN_SUCCESS:
             state = {
                 ...state,
                 user: action.payload.user,
                 token: action.payload.token,
                 authenticate: true,
-                authenticating: false
-            }
-            break
+                authenticating: false,
+            };
+            break;
         case authConstants.LOGOUT_REQUEST:
             state = {
                 ...state,
-                loading: true
-            }
+                loading: true,
+            };
             break;
-
         case authConstants.LOGOUT_SUCCESS:
             state = {
-                ...initState
-            }
+                ...initState,
+            };
             break;
         case authConstants.LOGOUT_FAILURE:
             state = {
                 ...state,
                 error: action.payload.error,
-                loading: false
-            }
+                loading: false,
+            };
             break;
-
-
+        case authConstants.SIGNUP_REQUEST:
+            break;
+        case authConstants.SIGNUP_SUCCESS:
+            break;
+        case authConstants.SIGNUP_FAILURE:
+            state = {
+                ...state,
+                error: action.payload.error,
+            };
+            break;
     }
 
-
     return state;
-
-
-}
+};

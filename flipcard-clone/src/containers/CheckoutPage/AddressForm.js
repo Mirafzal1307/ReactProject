@@ -5,12 +5,8 @@ import { MaterialInput, MaterialButton } from '../../components/MaterialUI'
 
 
 
-/**
-* @author
-* @function AddressForm
-**/
 
-export const AddressForm = (props) => {
+ const AddressForm = (props) => {
     const [name, setName] = useState('');
     const [mobileNumber, setMobileNumber] = useState('');
     const [pinCode, setPinCode] = useState('');
@@ -202,3 +198,5 @@ export const AddressForm = (props) => {
 
 
 }
+
+export default AddressForm

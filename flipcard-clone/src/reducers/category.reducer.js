@@ -1,4 +1,6 @@
-import { categoryConstants } from "../actions/constants";
+/* eslint-disable default-case */
+/* eslint-disable import/no-anonymous-default-export */
+import { categoryConstansts } from "../actions/constants";
 
 const initState = {
     categories: [],
@@ -6,27 +8,25 @@ const initState = {
     error: null
 };
 
+
 const buildNewCategories = (parentId, categories, category) => {
     let myCategories = [];
 
-    if (parentId === undefined) {
+    if(parentId === undefined){
         return [
-          ...categories, 
-          { 
-              _id : category._id,
-              name: category.name,
-              slug : category.slug ,
-              children : [] 
-          }
+            ...categories,
+            {
+                _id: category._id,
+                name: category.name,
+                slug: category.slug,
+                children: []
+            }
         ];
-
-
     }
+    
+    for(let cat of categories){
 
-
-    for (let cat of categories) {
-
-        if (cat._id === parentId) {
+        if(cat._id === parentId){
             myCategories.push({
                 ...cat,
                 children: cat.children ? buildNewCategories(parentId, [...cat.children, {
@@ -36,58 +36,53 @@ const buildNewCategories = (parentId, categories, category) => {
                     parentId: category.parentId,
                     children: category.children
                 }], category) : []
-            })
-        } else {
-
+            });
+        }else{
             myCategories.push({
                 ...cat,
                 children: cat.children ? buildNewCategories(parentId, cat.children, category) : []
-            })
+            });
         }
+
+        
     }
+
 
     return myCategories;
 }
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default (state = initState, action) => {
-  
-    // eslint-disable-next-line default-case
-    switch (action.type) {
-        case categoryConstants.GET_ALL_CATEGORIES_SECCESS:
 
+export default (state = initState, action) => {
+    switch(action.type){
+        case categoryConstansts.GET_ALL_CATEGORIES_SUCCESS:
             state = {
                 ...state,
                 categories: action.payload.categories
             }
-            break
-
-        case categoryConstants.ADD_NEW_CATEGORY_REQUEST:
+            break;
+        case categoryConstansts.ADD_NEW_CATEGORY_REQUEST:
             state = {
                 ...state,
                 loading: true
             }
-            break
-        case categoryConstants.ADD_NEW_CATEGORY_SECCESS:
+            break;
+        case categoryConstansts.ADD_NEW_CATEGORY_SUCCESS:
             const category = action.payload.category;
-
-            const updateCategories = buildNewCategories(category.parentId, state.categories, category)
-            // console.log('updated categories', updateCategories)
+            const updatedCategories = buildNewCategories(category.parentId, state.categories, category);
+            console.log('updated categoires', updatedCategories);
+            
             state = {
                 ...state,
-                categories: updateCategories,
-                loading: false
+                categories: updatedCategories,
+                loading: false,
             }
-            break
-
-        case categoryConstants.ADD_NEW_CATEGORY_FAILURE:
+            break;
+        case categoryConstansts.ADD_NEW_CATEGORY_FAILURE:
             state = {
                 ...initState
-
             }
+            break;
     }
 
     return state;
-
-
 }
