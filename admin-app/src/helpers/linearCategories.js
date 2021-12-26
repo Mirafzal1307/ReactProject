@@ -4,7 +4,7 @@ const linearCategories = (categories, options = []) => {
         options.push({
             value: category._id,
             name: category.name,
-            parentId: category.parentId , 
+            parentId: category.parentId,
             type: category.type
         });
         if (category.children.length > 0) {
@@ -13,6 +13,6 @@ const linearCategories = (categories, options = []) => {
     }
 
     return options;
-
 }
- export default linearCategories;
+
+export default linearCategories;
