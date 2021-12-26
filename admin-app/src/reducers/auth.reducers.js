@@ -1,6 +1,5 @@
 /* eslint-disable default-case */
-
-import { authConstants } from "../actions/constants"
+import { authConstants } from "../actions/constants";
 
 const initState = {
     token: null,
@@ -8,22 +7,18 @@ const initState = {
         firstName: '',
         lastName: '',
         email: '',
-        picures: ''
+        picture: ''
     },
     authenticate: false,
     authenticating: false,
     loading: false,
     error: null,
     message: ''
-
-}
-
-
+};
 
 export default (state = initState, action) => {
 
     console.log(action);
-
 
     switch (action.type) {
         case authConstants.LOGIN_REQUEST:
@@ -32,8 +27,7 @@ export default (state = initState, action) => {
                 authenticating: true
             }
             break;
-
-        case authConstants.LOGIN_SECCESS:
+        case authConstants.LOGIN_SUCCESS:
             state = {
                 ...state,
                 user: action.payload.user,
@@ -41,14 +35,13 @@ export default (state = initState, action) => {
                 authenticate: true,
                 authenticating: false
             }
-            break
+            break;
         case authConstants.LOGOUT_REQUEST:
             state = {
                 ...state,
-                loading : true
+                loading: true
             }
             break;
-
         case authConstants.LOGOUT_SUCCESS:
             state = {
                 ...initState
@@ -58,15 +51,12 @@ export default (state = initState, action) => {
             state = {
                 ...state,
                 error: action.payload.error,
-                loading : false
+                loading: false
             }
             break;
-
 
     }
 
 
     return state;
-
-
 }
