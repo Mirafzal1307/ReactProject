@@ -11,7 +11,7 @@ const initState = {
 const buildNewCategories = (parentId, categories, category) => {
     let myCategories = [];
 
-    if (parentId === undefined) {
+    if(parentId == undefined){
         return [
             ...categories,
             {
@@ -23,10 +23,13 @@ const buildNewCategories = (parentId, categories, category) => {
             }
         ];
     }
+    
+    
 
     for (let cat of categories) {
 
         if (cat._id === parentId) {
+
             const newCategory = {
                 _id: category._id,
                 name: category.name,
@@ -39,7 +42,9 @@ const buildNewCategories = (parentId, categories, category) => {
                 ...cat,
                 children: cat.children.length > 0 ? [...cat.children, newCategory] : [newCategory]
             })
-        } else {
+
+        }else{
+
             myCategories.push({
                 ...cat,
                 children: cat.children ? buildNewCategories(parentId, cat.children, category) : []
@@ -55,7 +60,9 @@ const buildNewCategories = (parentId, categories, category) => {
 
 
 export default (state = initState, action) => {
-    switch (action.type) {
+
+    switch(action.type){
+
         case categoryConstansts.GET_ALL_CATEGORIES_SUCCESS:
             state = {
                 ...state,

@@ -6,10 +6,6 @@ import Card from "../../components/UI/Card";
 
 import "./style.css";
 
-/**
- * @author
- * @function Orders
- **/
 
 const Orders = (props) => {
     const order = useSelector((state) => state.order);

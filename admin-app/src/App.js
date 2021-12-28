@@ -36,6 +36,7 @@ function App() {
   return (
     <div className="App">
       <Switch>
+      <PrivateRoute path="/" exact component={Home} />
         <PrivateRoute path="/" exact component={Home} />
         <PrivateRoute path="/page" component={NewPage} />
         <PrivateRoute path="/category" component={Category} />

@@ -41,7 +41,9 @@ function App() {
             path="/:productSlug/:productId/p"
             element={<ProductDetailsPage />}
           />
-          <Route path="/:slug" element={<ProductListPage />} />
+
+          <Route path="/:slug" element={<ProductListPage/>} />
+
         </Routes>
       </Router>
     </div >

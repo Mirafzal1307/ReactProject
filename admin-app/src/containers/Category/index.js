@@ -26,6 +26,7 @@ import AddCategoryModal from './components/AddCategoryModal';
 import './style.css';
 
 
+const Category = (props) => {
 
 const Category = (props) => {
 
@@ -116,11 +117,13 @@ const Category = (props) => {
         const checkedArray = [];
         const expandedArray = [];
         checked.length > 0 && checked.forEach((categoryId, index) => {
-            const category = categories.find((category, _index) => categoryId === category.value);
+
+            const category = categories.find((category, _index) => categoryId == category.value);
             category && checkedArray.push(category);
         })
         expanded.length > 0 && expanded.forEach((categoryId, index) => {
-            const category = categories.find((category, _index) => categoryId === category.value);
+            const category = categories.find((category, _index) => categoryId == category.value);
+
             category && expandedArray.push(category);
         })
         setCheckedArray(checkedArray);
@@ -129,6 +132,7 @@ const Category = (props) => {
 
     const handleCategoryInput = (key, value, index, type) => {
         console.log(value);
+
         if (type === "checked") {
             const updatedCheckedArray = checkedArray.map((item, _index) =>
                 index === _index ? { ...item, [key]: value } : item);
@@ -136,6 +140,7 @@ const Category = (props) => {
         } else if (type === "expanded") {
             const updatedExpandedArray = expandedArray.map((item, _index) =>
                 index === _index ? { ...item, [key]: value } : item);
+
             setExpandedArray(updatedExpandedArray);
         }
     }
@@ -167,7 +172,6 @@ const Category = (props) => {
     const deleteCategories = () => {
         const checkedIdsArray = checkedArray.map((item, index) => ({ _id: item.value }));
         const expandedIdsArray = expandedArray.map((item, index) => ({ _id: item.value }));
-        // eslint-disable-next-line no-unused-vars
         const idsArray = expandedIdsArray.concat(checkedIdsArray);
 
         if (checkedIdsArray.length > 0) {

@@ -8,17 +8,26 @@ import { signup } from "../../actions";
 import { useEffect } from "react";
 
 
-
 const Signup = (props) => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    // eslint-disable-next-line no-unused-vars
+
     const [error, setError] = useState("");
     const auth = useSelector((state) => state.auth);
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        if (!user.loading) {
+            setFirstName("");
+            setLastName("");
+            setEmail("");
+            setPassword("");
+        }
+    }, [user.loading]);
 
     // useEffect(() => {
     //     if (!user.loading) {

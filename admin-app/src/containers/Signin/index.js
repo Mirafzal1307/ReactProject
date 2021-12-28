@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-unused-vars
+
 import React, { useState, useEffect } from 'react';
 import Layout from '../../components/Layout';
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
@@ -9,11 +9,12 @@ import { Redirect } from 'react-router-dom';
 
 
 
+
 const Signin = (props) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // eslint-disable-next-line no-unused-vars
+
     const [error, setError] = useState('');
     const auth = useSelector(state => state.auth);
 

@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createPage } from '../../actions';
 
 
+
 const NewPage = (props) => {
 
     const [createModal, setCreateModal] = useState(false);
@@ -40,7 +41,9 @@ const NewPage = (props) => {
     }, [page]);
 
     const onCategoryChange = (e) => {
+
         const category = categories.find(category => category.value === e.target.value);
+
         setCategoryId(e.target.value);
         setType(category.type);
     }
