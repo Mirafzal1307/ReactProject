@@ -1,4 +1,6 @@
+/* eslint-disable default-case */
 import { productConstants } from "../actions/constants";
+
 
 const initialState = { 
  products : [],
@@ -15,9 +17,4 @@ export default (state  = initialState , action) => {
         }
          break ;
 
-    }
 
-    return state;
-   
-}
- 

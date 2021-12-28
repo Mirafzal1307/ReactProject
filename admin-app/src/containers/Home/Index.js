@@ -1,13 +1,16 @@
+
 import React from 'react';
 import Layout from '../../components/Layout';
+
+/* eslint-disable no-unused-vars */
+import React from 'react';
+import Layout from '../../components/Layout';
+// eslint-disable-next-line no-unused-vars
+
 import { Jumbotron, Row, Col, Container } from 'react-bootstrap';
 import './style.css';
 import { NavLink } from 'react-router-dom';
 
-/**
-* @author
-* @function Home
-**/
 
 const Home = (props) => {
 

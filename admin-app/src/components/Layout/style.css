@@ -1,13 +1,10 @@
-* {
-    list-style: none;
-}
-
 .sidebar {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
-    background: rgb(233, 231, 231);
+    background-color: #eee;
+    padding: 0;
     padding-top: 60px;
     box-shadow: inset 0 0 2px gray;
 }
@@ -16,29 +13,26 @@
     display: block;
 }
 
-.slidebar ul {
+.sidebar ul {
     margin: 0;
     padding: 0;
 }
 
-
-.slidebar ul li {
-    list-style: none !important;
-
+.sidebar ul li {
+    list-style: none;
 }
 
 .sidebar ul li a {
     display: block;
-    color: #333 !important;
+    color: #333;
     padding: 5px 10px;
     box-sizing: border-box;
-    margin: 5px 0px 5px 10px !important;
-    border-radius: 5px 0 0 5px !important;
+    margin: 5px 0 5px 10px;
+    border-radius: 5px 0 0 5px;
     text-decoration: none;
-
 }
 
-.slidebar ul li a.active {
-    background: #333 !important;
-    color: #fff !important;
+.sidebar ul li a.active {
+    background: #333;
+    color: #fff;
 }

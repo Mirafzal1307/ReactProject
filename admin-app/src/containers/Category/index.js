@@ -25,10 +25,8 @@ import UpdateCategoriesModal from './components/UpdateCategoriesModal';
 import AddCategoryModal from './components/AddCategoryModal';
 import './style.css';
 
-/**
-* @author
-* @function Category
-**/
+
+const Category = (props) => {
 
 const Category = (props) => {
 
@@ -119,11 +117,13 @@ const Category = (props) => {
         const checkedArray = [];
         const expandedArray = [];
         checked.length > 0 && checked.forEach((categoryId, index) => {
+
             const category = categories.find((category, _index) => categoryId == category.value);
             category && checkedArray.push(category);
         })
         expanded.length > 0 && expanded.forEach((categoryId, index) => {
             const category = categories.find((category, _index) => categoryId == category.value);
+
             category && expandedArray.push(category);
         })
         setCheckedArray(checkedArray);
@@ -132,13 +132,15 @@ const Category = (props) => {
 
     const handleCategoryInput = (key, value, index, type) => {
         console.log(value);
-        if (type == "checked") {
+
+        if (type === "checked") {
             const updatedCheckedArray = checkedArray.map((item, _index) =>
-                index == _index ? { ...item, [key]: value } : item);
+                index === _index ? { ...item, [key]: value } : item);
             setCheckedArray(updatedCheckedArray);
-        } else if (type == "expanded") {
+        } else if (type === "expanded") {
             const updatedExpandedArray = expandedArray.map((item, _index) =>
-                index == _index ? { ...item, [key]: value } : item);
+                index === _index ? { ...item, [key]: value } : item);
+
             setExpandedArray(updatedExpandedArray);
         }
     }

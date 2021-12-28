@@ -7,10 +7,7 @@ import linearCategories from '../../helpers/linearCategories';
 import { useSelector, useDispatch } from 'react-redux';
 import { createPage } from '../../actions';
 
-/**
-* @author
-* @function NewPage
-**/
+
 
 const NewPage = (props) => {
 
@@ -44,7 +41,9 @@ const NewPage = (props) => {
     }, [page]);
 
     const onCategoryChange = (e) => {
-        const category = categories.find(category => category.value == e.target.value);
+
+        const category = categories.find(category => category.value === e.target.value);
+
         setCategoryId(e.target.value);
         setType(category.type);
     }

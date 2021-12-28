@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Layout from '../../components/Layout';
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
@@ -6,15 +7,14 @@ import { login } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-/**
-* @author
-* @function Signin
-**/
+
+
 
 const Signin = (props) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
     const [error, setError] = useState('');
     const auth = useSelector(state => state.auth);
 

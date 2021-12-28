@@ -8,7 +8,9 @@ const initState = {
 }
 
 export default (state = initState, action) => {
+
     switch(action.type){
+
         case userContants.USER_REGISTER_REQUEST:
             state = {
                 ...state,

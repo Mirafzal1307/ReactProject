@@ -7,20 +7,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { signup } from "../../actions";
 import { useEffect } from "react";
 
-/**
- * @author
- * @function Signup
- **/
 
 const Signup = (props) => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
     const [error, setError] = useState("");
     const auth = useSelector((state) => state.auth);
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
+
 
     useEffect(() => {
         if (!user.loading) {
@@ -30,6 +28,15 @@ const Signup = (props) => {
             setPassword("");
         }
     }, [user.loading]);
+
+    // useEffect(() => {
+    //     if (!user.loading) {
+    //         setFirstName("");
+    //         setLastName("");
+    //         setEmail("");
+    //         setPassword("");
+    //     }
+    // }, [user.loading]);
 
     const userSignup = (e) => {
         e.preventDefault();
