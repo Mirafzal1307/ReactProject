@@ -8,7 +8,7 @@
     height: 150px;
     overflow: hidden;
     text-align: center;
-    margin: 15px auto;
+    margin: 10px auto;
 }
 
 .productContainer .productImgContainer img {
@@ -21,7 +21,8 @@
     text-align: center;
     font-size: 12px;
 }
-.productPrice{
+
+.productPrice {
     font-size: 14px;
     font-weight: bold;
     margin: 5px 0;

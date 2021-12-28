@@ -1,34 +1,29 @@
 import {
-   /*  initialDataConstants, */
-    categoryConstants,
-    productConstants
-} from "./constants"
-
+    initialDataConstants,
+    categoryConstansts,
+    productConstants,
+    orderConstants,
+} from "./constants";
 import axios from "../helpers/axios";
 
-
 export const getInitialData = () => {
-    return async dispatch => {
-
+    return async (dispatch) => {
         const res = await axios.post(`/initialData`);
-
         if (res.status === 200) {
-            const { categories, products } = res.data;
-            // products.map(i => console.log(i))
-            // for (const [key, value] of Object.entries(products)) {
-            //     console.log(`${key}: ${value}`);
-            //   }
+            const { categories, products, orders } = res.data;
             dispatch({
-                type: categoryConstants.GET_ALL_CATEGORIES_SECCESS,
-                payload: { categories }
+                type: categoryConstansts.GET_ALL_CATEGORIES_SUCCESS,
+                payload: { categories },
             });
             dispatch({
-                type: productConstants.GET_ALL_PRODUCTS_SECCESS,
-                payload: { products }
+                type: productConstants.GET_ALL_PRODUCTS_SUCCESS,
+                payload: { products },
+            });
+            dispatch({
+                type: orderConstants.GET_CUSTOMER_ORDER_SUCCESS,
+                payload: { orders },
             });
         }
-
-console.log(res)
-
-    }
-}
+        console.log(res);
+    };
+};

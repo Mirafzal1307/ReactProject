@@ -1,26 +1,30 @@
 import React from 'react';
-import { Form } from 'react-bootstrap'
+import { Form } from 'react-bootstrap';
 
-function Input(props) {
+
+
+/**
+* @author
+* @function Input
+**/
+
+const Input = (props) => {
+
     let input = null;
     switch (props.type) {
         case 'select':
-            input = <Form.Group  >
-                {props.label && <Form.Label >{props.label}</Form.Label>}
-                <select className='form-control  form-control-sm '
+            input = <Form.Group>
+                {props.label && <Form.Label>{props.label}</Form.Label>}
+                <select
+                    className="form-control form-control-sm"
                     value={props.value}
                     onChange={props.onChange}
                 >
-                    <option value="">
-                        {props.placeholder}
-                    </option>
+                    <option value="">{props.placeholder}</option>
                     {
-
                         props.options.length > 0 ?
                             props.options.map((option, index) =>
-                                <option key={index} value={option.value} >
-                                    {option.name}
-                                </option>
+                                <option key={index} value={option.value}>{option.name}</option>
                             ) : null
                     }
                 </select>
@@ -28,9 +32,11 @@ function Input(props) {
             break;
         case 'text':
         default:
-            input = <Form.Group  >
-                {props.label && <Form.Label >{props.label}</Form.Label>}
-                <Form.Control type={props.type} placeholder={props.placeholder}
+            input = <Form.Group>
+                {props.label && <Form.Label>{props.label}</Form.Label>}
+                <Form.Control
+                    type={props.type}
+                    placeholder={props.placeholder}
                     value={props.value}
                     onChange={props.onChange}
                     {...props}
@@ -43,6 +49,7 @@ function Input(props) {
 
 
     return input;
+
 }
 
 export default Input

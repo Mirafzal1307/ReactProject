@@ -1,52 +1,51 @@
-
-import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './containers/HomePage';
-import ProductListPage from './containers/PoductListPage';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { isUserLoggedIn } from './actions';
-import ProductDetailsPage from './containers/ProductDetailsPage';
-import CardPage from './containers/CardPage';
-import { updateCart } from './actions/cart.action';
-
-
+import React, { useEffect } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import HomePage from "./containers/HomePage";
+import ProductListPage from "./containers/PoductListPage";
+import { useDispatch, useSelector } from "react-redux";
+import { isUserLoggedIn, updateCart } from "./actions";
+import ProductDetailsPage from "./containers/ProductDetailsPage";
+import CartPage from "./containers/CartPage";
+import CheckoutPage from "./containers/CheckoutPage";
+import OrderPage from "./containers/OrderPage";
+import OrderDetailsPage from "./containers/OrderDetailsPage";
 
 function App() {
-
   const dispatch = useDispatch();
-
-  const auth = useSelector(state => state.auth)
+  const auth = useSelector((state) => state.auth);
 
   useEffect(() => {
-
     if (!auth.authenticate) {
       dispatch(isUserLoggedIn());
     }
-
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auth.authenticate])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [auth.authenticate]);
 
   useEffect(() => {
-    console.log('App.js - Update Cart')
+    console.log("App.js - updateCart");
     dispatch(updateCart());
-  }, [auth.authenticate])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [auth.authenticate]);
+
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route exact path="/" element={<HomePage />} />
-          <Route path="/cart" element={<CardPage />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/:productSlug/:productId/p" element={<ProductDetailsPage />} />
-          <Route path="/:slug" element={<ProductListPage />} />
-
+          <Route path="/" exact element={<HomePage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/account/orders" element={<OrderPage />} />
+          <Route path="/order_details/:orderId" element={<OrderDetailsPage />} />
+          <Route
+            path="/:productSlug/:productId/p"
+            element={<ProductDetailsPage />}
+          />
+          <Route path="/:slug" element={<ProductListPage/>} />
         </Routes>
       </Router>
-    </div>
+    </div >
   );
 }
 
 export default App;
-

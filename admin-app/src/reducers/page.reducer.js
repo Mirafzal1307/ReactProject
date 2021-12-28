@@ -1,10 +1,12 @@
-import { pageConstants } from "../actions/constants";
+/* eslint-disable default-case */
+import { pageConstants } from "../actions/constants"
+
 const initState = {
     error: null,
     loading: false,
     page: {}
-
 }
+
 export default (state = initState, action) => {
     switch (action.type) {
         case pageConstants.CREATE_PAGE_REQUEST:
@@ -13,14 +15,12 @@ export default (state = initState, action) => {
                 loading: true
             }
             break;
-
         case pageConstants.CREATE_PAGE_SUCCESS:
             state = {
                 ...state,
                 loading: false
             }
             break;
-
         case pageConstants.CREATE_PAGE_FAILURE:
             state = {
                 ...state,
@@ -28,8 +28,7 @@ export default (state = initState, action) => {
                 error: action.payload.error
             }
             break;
-
-
     }
+
     return state;
 }

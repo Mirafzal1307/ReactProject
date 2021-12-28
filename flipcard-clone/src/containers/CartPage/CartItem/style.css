@@ -4,7 +4,20 @@
 
 .cartProImgContainer {
     width: 112px;
-    height: 122px;
+    height: 112px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.cartProImgContainer img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.cartProImgContainer {
+    width: 112px;
+    height: 112px;
     overflow: hidden;
     text-align: center;
 }
@@ -22,7 +35,7 @@
 }
 
 .cartActionBtn {
-    margin: 1 10px;
+    margin: 0 10px;
     font-family: 'Roboto';
     font-weight: 600;
     text-transform: uppercase;
@@ -33,27 +46,24 @@
     font-size: 15px;
 }
 
-.quantityControll {
+.quantityControl {
     display: flex;
     align-items: center;
 }
 
-.quantityControll button {
+.quantityControl button {
     width: 30px;
     height: 30px;
-    border-radius: 15px !important;
+    border-radius: 15px;
     border: none;
     border: 1px solid #c2c2c2;
     background-color: transparent;
-
 }
 
-.quantityControll input {
+.quantityControl input {
     width: 40px;
-    height: 20px !important;
-    border: 1px solid #c2c2c2 !important;
-    margin: 0 5px ;
+    height: 20px;
+    border: 1px solid #c2c2c2;
+    margin: 0 5px;
     text-align: center;
-
-
 }

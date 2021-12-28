@@ -1,31 +1,31 @@
-import React from 'react';
-import './style.css';
+import React from "react";
+import "./style.css";
 
-function Card(props) {
+
+
+const Card = (props) => {
     return (
-        <>
-            <div className="card"
-
-                {...props} >
-
+        <div className="card" {...props}>
+            {(props.headerLeft || props.headerRight) && (
                 <div className="cardHeader">
-
-                    {
-                        props.headerLeft && <div>{props.headerLeft}</div>
-                    }
-
-
-                    {
-                        props.headerRight && props.headerRight
-
-                    }
-
+                    {props.headerLeft && (
+                        <div
+                            style={{
+                                alignSelf: "center",
+                                fontSize: "20px",
+                                fontWeight: "500",
+                            }}
+                        >
+                            {props.headerLeft}
+                        </div>
+                    )}
+                    {props.headerRight && props.headerRight}
                 </div>
-                {props.children}
-            </div>
+            )}
 
-        </>
-    )
-}
+            {props.children}
+        </div>
+    );
+};
 
-export default Card
+export default Card;

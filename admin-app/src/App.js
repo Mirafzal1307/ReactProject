@@ -37,11 +37,14 @@ function App() {
     <div className="App">
 
       <Switch>
-        <PrivateRoute path="/" exact component={Home} />
-        <PrivateRoute path="/page" exact component={NewPage} />
+      <PrivateRoute path="/" exact component={Home} />
+        <PrivateRoute path="/page" component={NewPage} />
         <PrivateRoute path="/category" component={Category} />
         <PrivateRoute path="/products" component={Products} />
         <PrivateRoute path="/orders" component={Orders} />
+        
+
+
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
       </Switch>
